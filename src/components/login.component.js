@@ -38,7 +38,7 @@ export default class Login extends Component {
             </div>
           </div>
           <div className="d-grid">
-            <Link type="submit" className="btn btn-primary" to="../sign-up">
+            <Link type="submit" className="btn btn-primary" to="../Plataform">
               Entrar
             </Link>
           </div>
