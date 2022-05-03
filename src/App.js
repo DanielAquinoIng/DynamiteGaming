@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
 import Plataforma from "./components/plataforma.component";
+import Catalogo from "./components/catalogo.component";
 function App() {
   return (
     <Router>
@@ -27,16 +28,18 @@ function App() {
             </div>
           </div>
         </nav> */}
-        <div className="auth-wrapper">
-          <div className="auth-inner">
+        {/* <div>
+          <div> */}
             <Routes>
-              <Route exact path="/" element={<Login />} />
+              {/* <Route exact path="/" element={<Login />} /> */}
+              <Route exact path="/" element={<Plataforma />} />
               <Route path="/sign-in" element={<Login />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/Plataform" element={<Plataforma />} />
+              <Route path="/Catalogo" element={<Catalogo/>} />
             </Routes>
-          </div>
-        </div>
+          {/* </div>
+        </div> */}
       </div>
     </Router>
   );
