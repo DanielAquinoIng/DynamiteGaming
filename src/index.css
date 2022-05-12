@@ -73,6 +73,11 @@ body, html, .App, #root, .auth-wrapper {
 
 .zoom {
   transition: transform .3s;
+  width: 25%;
+  /* flex-direction: row; */
+
+
+
 }
 
 .zoom:hover {
@@ -80,15 +85,49 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .plataforma-selection {
-  width: 500px;
+  /* position: relative; */
+   /* width:auto; */
+  /* flex-direction: row;  */
   /* height: 100%; */
-  margin: auto;
-  background: #ffd900;
+   /* margin: auto; */
+  background-color: #ffd900; 
   /* box-shadow: 4px 14px 80px #ffd900; */
-  padding: 40px 55px 45px 55px;
-  margin-top: 5%;
-  margin-bottom: 10%;
+  /* padding: 40px 55px 45px 55px; */
+  /* margin-top: 5%;
+  margin-bottom: 10%; */
   
-  border-radius: 15px;
+  /* border-radius: 15px; */
   /* transition: all .3s; */
+}
+
+.i1{
+  /* flex-direction: row; */
+  position:absolute;
+  top: 50%;
+  left: 12.5%;
+  transform: translate(-50%, -50%);
+}
+
+.i2{
+  /* flex-direction: row; */
+  position:absolute;
+  top: 50%;
+  left: 37.5%;
+  transform: translate(-50%, -50%);
+}
+
+.i3{
+  /* flex-direction: row; */
+  position:absolute;
+  top: 50%;
+  left: 62.5%;
+  transform: translate(-50%, -50%);
+}
+
+.i4{
+  /* flex-direction: row; */
+  position:absolute;
+  top: 50%;
+  left: 87.5%;
+  transform: translate(-50%, -50%);
 }
