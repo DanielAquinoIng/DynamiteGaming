@@ -17,6 +17,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import fondo from "./../assets/images/amo.jpg";
 import { LockOpenOutlined as LockOutlinedIcon } from "@material-ui/icons";
+import Carrousel from "./carrusel";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,6 +93,7 @@ const Login = () => {
           </Typography>
           <form className={classes.form}>
             <LoginButton />
+            <Carrousel />
             <Profile />
             <LogoutButton />
           </form>

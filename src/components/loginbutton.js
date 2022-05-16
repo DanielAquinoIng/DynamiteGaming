@@ -20,7 +20,7 @@ export const LoginButton = () => {
       className={useStyles.button}
       onClick={() => loginWithRedirect()}
     >
-      Login
+      SI!
     </Button>
   );
 };
