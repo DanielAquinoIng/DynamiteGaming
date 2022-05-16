@@ -11,11 +11,11 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import fondo from "./../assets/images/mine.jpg";
-import {
-  LockOpenOutlined as LockOutlinedIcon,
-  Accessibility,
-} from "@material-ui/icons";
-import { Alert } from "bootstrap";
+import { EmojiPeople } from "@material-ui/icons";
+// import Alert from "@mui/material/Alert";
+// import Stack from "@mui/material/Stack";
+
+// import { Alert } from "bootstrap";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,9 +26,10 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   container: {
+    // backgroundColor: "black",
     opacity: "1",
-    height: "60%",
-    marginTop: theme.spacing(30),
+    height: "70%",
+    marginTop: theme.spacing(25),
     [theme.breakpoints.down(400 + theme.spacing(2) + 2)]: {
       marginTop: 0,
       with: "100%",
@@ -36,18 +37,19 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   div: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(3),
     backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: "100%",
     marginTop: theme.spacing(1),
+    backgroundColor: "white",
   },
   button: {
     margin: theme.spacing(3, 0, 2),
@@ -72,29 +74,35 @@ const Register = () => {
   };
 
   const onSubmit = () => {
-      const correo = body.email.toString()
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.correo){
-       } else {
-        alert("La dirección de email es incorrecta.");
-        setBody({
-            email: "",
-        })
-       }
+    const correo = body.email.toString();
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.correo) {
+    } else {
+      // alert("La dirección de email es incorrecta.");
+      // <Stack>
+      //   <Alert variant="filled" severity="error">
+      //     This is an error alert — check it out!
+      //   </Alert>
+      // </Stack>;
+      setBody({
+        email: "",
+      });
+    }
 
-      if (body.password != body.repassword) {
-          setBody({
-              body,
-              password: "",
-              repassword: "",
-          })
-          alert("Las contraseñas no coinciden");
-      }
+    if (body.password != body.repassword) {
+      setBody({
+        body,
+        password: "",
+        repassword: "",
+      });
+      alert("Las contraseñas no coinciden");
+    }
     console.log(body);
   };
 
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
+
       <Container
         component={Paper}
         elevation={5}
@@ -103,7 +111,7 @@ const Register = () => {
       >
         <div className={classes.div}>
           <Avatar className={classes.avatar}>
-            <Accessibility />
+            <EmojiPeople />
           </Avatar>
           <Typography component="h1" variant="h5">
             Registrate
@@ -113,9 +121,10 @@ const Register = () => {
               fullWidth
               autoFocus
               color="primary"
-              margin="normal"
+              margin="dense"
               variant="filled"
               label="Nickname"
+              placeholder="Escribe tu Nick:)"
               name="nickname"
               value={body.nickname}
               onChange={handleChange}
@@ -124,8 +133,9 @@ const Register = () => {
               fullWidth
               autoFocus
               color="primary"
-              margin="normal"
+              margin="dense"
               variant="filled"
+              placeholder="Bruce 'El venganzas'"
               label="Nombre"
               name="name"
               value={body.name}
@@ -135,9 +145,10 @@ const Register = () => {
               fullWidth
               autoFocus
               color="primary"
-              margin="normal"
+              margin="dense"
               variant="filled"
               label="Apellido"
+              placeholder="Wayne"
               name="lastname"
               value={body.lastname}
               onChange={handleChange}
@@ -146,10 +157,11 @@ const Register = () => {
               fullWidth
               autoFocus
               color="primary"
-              margin="normal"
+              margin="dense"
               variant="filled"
               type="email"
               label="Correo"
+              placeholder="Nombrecool@correo.com"
               name="email"
               value={body.email}
               onChange={handleChange}
@@ -158,10 +170,11 @@ const Register = () => {
               fullWidth
               autoFocus
               color="primary"
-              margin="normal"
+              margin="dense"
               variant="filled"
               type="password"
               label="Contraseña"
+              placeholder="1234Batman"
               name="password"
               value={body.password}
               onChange={handleChange}
@@ -170,10 +183,11 @@ const Register = () => {
               fullWidth
               autoFocus
               color="primary"
-              margin="normal"
+              margin="dense"
               variant="filled"
               type="password"
-              label="Contraseña"
+              label="Confirmar contraseña"
+              placeholder="Repite tu contraseña, vamos:)"
               name="repassword"
               value={body.repassword}
               onChange={handleChange}

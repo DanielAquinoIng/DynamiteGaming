@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -33,11 +34,11 @@ function App() {
           <div> */}
         <Routes>
           {/* <Route exact path="/" element={<Login />} /> */}
-          <Route exact path="/" element={<Plataforma />} />
+          <Route exact path="/" element={<Login />} />
           <Route path="/sign-in" element={<Login />} />
           <Route path="/sign-up" element={<Register />} />
           <Route path="/Plataform" element={<Plataforma />} />
-          <Route path="/Catalogo" element={<Catalogo />} />
+          {/* <Route path="/Catalogo" element={<Catalogo />} /> */}
         </Routes>
         {/* </div>
         </div> */}

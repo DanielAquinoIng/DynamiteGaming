@@ -102,32 +102,46 @@ body, html, .App, #root, .auth-wrapper {
 
 .i1{
   /* flex-direction: row; */
-  position:absolute;
+  display: flex;
+  flex-direction: row;
+  /* position:absolute;
   top: 50%;
   left: 12.5%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 
 .i2{
+  max-height: max-content ;
   /* flex-direction: row; */
-  position:absolute;
+  /* display: table-column;
+  flex-direction:column; */
+  /* position:absolute;
   top: 50%;
   left: 37.5%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 
 .i3{
+
+  display: table-column;
+  flex-direction:column;
   /* flex-direction: row; */
-  position:absolute;
-  top: 50%;
+  /* position:absolute; */
+  /* top: 50%;
   left: 62.5%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 
 .i4{
+  display: table-column;
+  flex-direction:column;
   /* flex-direction: row; */
-  position:absolute;
-  top: 50%;
+  /* position:absolute; */
+  /* top: 50%;
   left: 87.5%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+}
+
+.fondo{
+  background-color: #ffd900;
 }

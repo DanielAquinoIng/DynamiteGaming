@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, Image } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { LoginButton } from "./loginbutton";
+import { LogoutButton } from "./logoutbutton";
+import { Profile } from "./catalogo.component";
+import icono from "../assets/images/icono.png";
 import {
   Grid,
   Container,
@@ -23,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     opacity: "1",
-    height: "40%",
+    height: "30%",
     marginTop: theme.spacing(30),
     [theme.breakpoints.down(400 + theme.spacing(2) + 2)]: {
       marginTop: 0,
@@ -67,6 +72,8 @@ const Login = () => {
     console.log(body);
   };
 
+  const { isAuthenticated } = useAuth0();
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -78,44 +85,15 @@ const Login = () => {
       >
         <div className={classes.div}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            {/* <Image src={icono} /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
             Inicia sesión
           </Typography>
           <form className={classes.form}>
-            <TextField
-              fullWidth
-              autoFocus
-              color="primary"
-              margin="normal"
-              variant="filled"
-              label="Nickname"
-              name="nickname"
-              value={body.nickname}
-              onChange={handleChange}
-            />
-            <TextField
-              fullWidth
-              autoFocus
-              color="primary"
-              type="password"
-              margin="normal"
-              variant="filled"
-              label="Password"
-              name="password"
-              value={body.password}
-              onChange={handleChange}
-            />
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={() => onSubmit()}
-            >
-              Sign In
-            </Button>
+            <LoginButton />
+            <Profile />
+            <LogoutButton />
           </form>
         </div>
       </Container>
