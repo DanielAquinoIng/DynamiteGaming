@@ -66,12 +66,13 @@ export const Catalogo = () => {
         <Grid container component="main" className={useStyles.root}>
           <CssBaseline />
           <Container
+            style={{textAlign:"center"}}
             component={Paper}
             elevation={5}
             maxWidth="xs"
             className={useStyles.container}
           >
-            <div className={useStyles.div}>
+            <div className={useStyles.div} style={{marginTop:"5px"}}>
               <img
                 src={user.picture}
                 alt={user.name}
