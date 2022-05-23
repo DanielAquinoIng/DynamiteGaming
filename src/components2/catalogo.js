@@ -1,20 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
-import icono from "../assets/images/icono.png";
 import {
   Grid,
-  Container,
-  Paper,
-  Avatar,
-  Typography,
-  TextField,
-  Button,
   CssBaseline,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import fondo from "./../assets/images/amo.jpg";
-import { LockOpenOutlined as LockOutlinedIcon } from "@material-ui/icons";
+
+import ElderRing from '../assets/images/ElderRing.jpg';
+import FarCry from '../assets/images/FarCry.jpg';
+import GhostOfTsushima from '../assets/images/GhostOfTsushima.jpg';
+import MonosChinos from '../assets/images/MonosChinos.jpg';
+import Wonderlands from '../assets/images/Wonderlands.jpg';
+import COD from '../assets/images/COD.jpg';
+import BarraBusqueda from "./barraBusqueda";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,32 +65,59 @@ export const Catalogo = () => {
       <div>
         <Grid container component="main" className={useStyles.root}>
           <CssBaseline />
-          <Container
-            style={{textAlign:"center"}}
-            component={Paper}
-            elevation={5}
-            maxWidth="xs"
-            className={useStyles.container}
-          >
-            <div className={useStyles.div} style={{marginTop:"5px"}}>
-              <img
-                src={user.picture}
-                alt={user.name}
-                className={useStyles.container}
-              />
-              <Typography component="h1" variant="h5">
-                {user.name}
-              </Typography>
-              <Typography component="h3" variant="h5">
-                Email: {user.email}
-              </Typography>
-              <form className={useStyles.form}></form>
-            </div>
-          </Container>
         </Grid>
-        {/* <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>Email: {user.email}</p> */}
+        <BarraBusqueda/>
+        <container>
+          <div style={{ textAlign: "center" }}>
+            <img
+              src={ElderRing}
+              style={{ width: "384px", height: "480px", margin: "50px" }}
+              onMouseEnter={{ fontSize: "130%" }}
+              className="zoom"
+              alt=""
+            />
+            <img
+              src={FarCry}
+              style={{ width: "384px", height: "480px", margin: "50px" }}
+              onMouseEnter={{ fontSize: "130%" }}
+              className="zoom"
+              alt=""
+            />
+            <img
+              src={GhostOfTsushima}
+              style={{ width: "384px", height: "480px", margin: "50px" }}
+              onMouseEnter={{ fontSize: "130%" }}
+              className="zoom"
+              alt=""
+            />
+          </div>
+          <div
+            style={{ textAlign: "center" }}
+            onMouseEnter={{ fontSize: "130%" }}
+          >
+            <img
+              src={MonosChinos}
+              style={{ width: "384px", height: "480px", margin: "50px" }}
+              onMouseEnter={{ fontSize: "130%" }}
+              className="zoom"
+              alt=""
+            />
+            <img
+              src={Wonderlands}
+              style={{ width: "384px", height: "480px", margin: "50px" }}
+              onMouseEnter={{ fontSize: "130%" }}
+              className="zoom"
+              alt=""
+            />
+            <img
+              src={COD}
+              style={{ width: "384px", height: "480px", margin: "50px" }}
+              onMouseEnter={{ fontSize: "130%" }}
+              className="zoom"
+              alt=""
+            />
+          </div>
+        </container>
       </div>
     )
   );

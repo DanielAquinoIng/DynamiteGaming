@@ -145,3 +145,27 @@ body, html, .App, #root, .auth-wrapper {
 .fondo{
   background-color: #ffd900;
 }
+
+.listoEntrar{
+  background-image: '/src/assets/images/COD.jpg';
+  text-align: center;
+  flex-direction: row; 
+  display: table-column;
+  flex-direction:column;
+  position:absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.barraBusqueda{
+  text-align: center;
+  background-color: red;
+  margin-bottom: 10px;
+}
+.inputBusqueda{
+  margin: 8px;
+  align-self: center;
+  width: 800px;
+  height: 35px;
+  font-size: 22px;
+}
