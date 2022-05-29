@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { JuegosContext } from "../global/juegosContext";
+import { Juego } from "./Juego";
 
 export const Nintendogames = () => {
+    const { juegos } = useContext(JuegosContext);
+
+
     return(
         <>
-        <h1>Nintendo</h1>        
-        </>
+      <div>
+        {juegos.map((juego) => (
+          <Juego juego={juego}/>
+        ))}
+      </div>
+    </>
     )
 }
 

@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
-import { JuegosContext } from "../global/juegosContext";
+import React from "react";
 
-export const Playgames = () => {
-  const { juegos } = useContext(JuegosContext);
+export function Juego({ juego }) {
 
   return (
     <>
       <div>
-        {juegos.map((juego) => (
           <div className="juego-card" key={juego.IdJuego}>
             <div className="juego-img">
               <img
@@ -21,10 +18,7 @@ export const Playgames = () => {
             <div className="juego-name">{juego.NombreJuego}</div>
             <div className="juego-price">$ {juego.PrecioJuego}.00</div>
           </div>
-        ))}
       </div>
     </>
   );
-};
-
-export default Playgames;
+}
