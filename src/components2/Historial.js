@@ -3,7 +3,7 @@ import BarraBusqueda from "./barraBusqueda";
 import "../css/compras.css"
 import nintendo from "../assets/nintendo.jpeg"
 
-const Compras = () => {
+const Historial = () => {
 
    return (
      <div>
@@ -119,4 +119,4 @@ const Compras = () => {
    );
 };
 
-export default Compras;
+export default Historial;

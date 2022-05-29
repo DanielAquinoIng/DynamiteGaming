@@ -23,7 +23,7 @@ import Nintendogames from "./Nintendogames";
 import Playgames from "./Playgames";
 import Steamgames from "./Steamgames";
 import Perfil from "./Perfil";
-import Compras from "./Compras";
+import Historial from "./Historial";
 
 //Estilos con el makeStyle
 const useStyles = makeStyles((theme) => ({
@@ -76,7 +76,7 @@ export const Catalogo = () => {
   const [play, setplay] = React.useState(false);
   const [steam, setsteam] = React.useState(false);
   const [perfil, setperfil] = React.useState(false);
-  const [compras, setcompras] = React.useState(false);
+  const [historial, sethistorial] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -102,7 +102,7 @@ export const Catalogo = () => {
     setnintendo(false);
     setsteam(false);
     setperfil(false);
-    setcompras(false);
+    sethistorial(false);
     setAnchorElNav(null);
     console.log("Xbox", xbox, play, nintendo, steam);
   };
@@ -114,7 +114,7 @@ export const Catalogo = () => {
     setnintendo(false);
     setsteam(false);
     setperfil(false);
-    setcompras(false);
+    sethistorial(false);
     setAnchorElNav(null);
     console.log("play", xbox, play, nintendo, steam);
   };
@@ -126,7 +126,7 @@ export const Catalogo = () => {
     setnintendo(true);
     setsteam(false);
     setperfil(false);
-    setcompras(false);
+    sethistorial(false);
     setAnchorElNav(null);
     console.log("nintendo", xbox, play, nintendo, steam);
   };
@@ -138,7 +138,7 @@ export const Catalogo = () => {
     setnintendo(false);
     setsteam(true);
     setperfil(false);
-    setcompras(false);
+    sethistorial(false);
     setAnchorElNav(null);
     console.log("steam", xbox, play, nintendo, steam);
   };
@@ -150,7 +150,7 @@ export const Catalogo = () => {
     setnintendo(false);
     setsteam(false);
     setperfil(true);
-    setcompras(false);
+    sethistorial(false);
     setAnchorElUser(null);
     console.log("steam", xbox, play, nintendo, steam);
   };
@@ -162,7 +162,7 @@ export const Catalogo = () => {
     setnintendo(false);
     setsteam(false);
     setperfil(false);
-    setcompras(true);
+    sethistorial(true);
     setAnchorElUser(null);
     console.log("steam", xbox, play, nintendo, steam);
   };
@@ -335,7 +335,7 @@ export const Catalogo = () => {
         {play ? <Playgames /> : ""}
         {steam ? <Steamgames /> : ""}
         {perfil ? <Perfil /> : ""}
-        {compras ? <Compras /> : ""}
+        {historial ? <Historial /> : ""}
       </>
     )
   );
