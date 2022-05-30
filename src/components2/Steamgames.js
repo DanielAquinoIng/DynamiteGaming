@@ -1,10 +1,18 @@
-import React from 'react'
+import React from "react";
+import { Juego } from "./Juego";
+import ConsultaJuegos from "../global/consultaJuegos";
 
 export const Steamgames = () => {
-    return(
-        <>
-        <h1>Steam</h1>        
-        </>
-    )
-}
+  const juegos = ConsultaJuegos("PcGames");
+
+  return (
+    <>
+      <div>
+        {juegos.map((juego) => (
+          <Juego juego={juego} />
+        ))}
+      </div>
+    </>
+  );
+};
 export default Steamgames;

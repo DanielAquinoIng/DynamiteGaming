@@ -4,6 +4,7 @@ import Catalogo from "./components2/catalogo";
 import { useAuth0 } from "@auth0/auth0-react";
 import Fondito from './assets/images/fondito.jpg'
 import Dynamite from './assets/images/pngwing.com.png'
+
 function App() {
   const { isAuthenticated } = useAuth0();
 
