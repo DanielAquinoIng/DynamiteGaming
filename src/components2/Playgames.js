@@ -1,26 +1,15 @@
-import React, { useContext } from "react";
-import { JuegosContext } from "../global/juegosContext";
+import React from "react";
+import { Juego } from "./Juego";
+import ConsultaJuegos from "../global/consultaJuegos";
 
 export const Playgames = () => {
-  const { juegos } = useContext(JuegosContext);
+  const juegos = ConsultaJuegos("PlayGames");
 
   return (
     <>
       <div>
         {juegos.map((juego) => (
-          <div className="juego-card" key={juego.IdJuego}>
-            <div className="juego-img">
-              <img
-                src={juego.ImagenJuego}
-                alt="No se encontro la imagen"
-                style={{ width: "384px", height: "480px", margin: "50px" }}
-                onMouseEnter={{ fontSize: "130%" }}
-                className="zoom"
-              />
-            </div>
-            <div className="juego-name">{juego.NombreJuego}</div>
-            <div className="juego-price">$ {juego.PrecioJuego}.00</div>
-          </div>
+          <Juego juego={juego} />
         ))}
       </div>
     </>

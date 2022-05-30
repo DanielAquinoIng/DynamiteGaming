@@ -4,7 +4,6 @@ import Catalogo from "./components2/catalogo";
 import { useAuth0 } from "@auth0/auth0-react";
 import Fondito from './assets/images/fondito.jpg'
 import Dynamite from './assets/images/pngwing.com.png'
-import { JuegosContextProvider } from "./global/juegosContext";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -15,9 +14,7 @@ function App() {
     <div style={{backgroundImage: {Fondito}, backgroundSize:"cover", backgroundRepeat:"no-repeat"}}>
       {isAuthenticated ? (
         <>
-          <JuegosContextProvider>
-            <Catalogo />
-          </JuegosContextProvider>
+          <Catalogo />
         </>
       ) : (
         <div className="listoEntrar">
