@@ -1,5 +1,4 @@
 import React from 'react';
-import BarraBusqueda from "./barraBusqueda"; 
 import "../css/compras.css"
 import nintendo from "../assets/nintendo.jpeg"
 
@@ -7,7 +6,6 @@ const Historial = () => {
 
    return (
      <div>
-       <BarraBusqueda />
        <h1>Historial de compras</h1>
        <div className='card-wrap'>
          <article className='card'>
