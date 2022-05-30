@@ -1,32 +1,18 @@
+import { LoginButton } from "./components/loginbutton";
+import { LogoutButton } from "./components/logoutbutton";
 import Catalogo from "./components2/catalogo";
 import { useAuth0 } from "@auth0/auth0-react";
 import Fondito from './assets/images/fondito.jpg'
 import Dynamite from './assets/images/pngwing.com.png'
-import Sign from "./components2/sign"
-import React, {useState,useEffect} from 'react';
-
-import firebaseApp from "./components/credenciales";
-import{getAuth,onAuthStateChanged} from "firebase/auth"
-
-const auth=getAuth(firebaseApp);
 
 function App() {
+  const { isAuthenticated } = useAuth0();
 
-  const [usuarioGlobal, setUsuarioGlobal] = useState(null);
-  
-  onAuthStateChanged(auth,(usuarioFirebase)=>{
-    if(usuarioFirebase)
-    {
-      setUsuarioGlobal(usuarioFirebase);
-    }
-    else
-    {
-      setUsuarioGlobal(null);
-    }
-  });
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <div style={{backgroundImage: {Fondito}, backgroundSize:"cover", backgroundRepeat:"no-repeat"}}>
-      {usuarioGlobal ? (
+      {isAuthenticated ? (
         <>
           <Catalogo />
         </>
@@ -34,7 +20,7 @@ function App() {
         <div className="listoEntrar">
           <h1>Bienvenido a Dynamite Gaming</h1>
           <h1>Estas listo para entrar?</h1>
-          <Sign/>
+          <LoginButton />
         </div>
       )}
     </div>
