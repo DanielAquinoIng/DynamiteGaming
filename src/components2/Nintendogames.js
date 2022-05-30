@@ -1,11 +1,19 @@
-import React from 'react'
+import React from "react";
+import { Juego } from "./Juego";
+import ConsultaJuegos from "../global/consultaJuegos";
 
 export const Nintendogames = () => {
-    return(
-        <>
-        <h1>Nintendo</h1>        
-        </>
-    )
-}
+  const juegos = ConsultaJuegos("NintendoGames");
+
+  return (
+    <>
+      <div>
+        {juegos.map((juego) => (
+          <Juego juego={juego} />
+        ))}
+      </div>
+    </>
+  );
+};
 
 export default Nintendogames;
