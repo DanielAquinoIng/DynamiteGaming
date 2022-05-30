@@ -7,7 +7,6 @@ const Historial = () => {
 
    return (
      <div>
-       <BarraBusqueda />
        <h1>Historial de compras</h1>
        <div className='card-wrap'>
          <article className='card'>
