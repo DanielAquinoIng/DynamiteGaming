@@ -1,8 +1,12 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { Grid, CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import fondo from "./../assets/images/amo.jpg";
+
+//
+import firebaseApp from "../components/credenciales";
+import {getAuth,signOut} from "firebase/auth";
 
 //Barra busqueda
 import AppBar from "@mui/material/AppBar";
@@ -24,6 +28,9 @@ import Playgames from "./Playgames";
 import Steamgames from "./Steamgames";
 import Perfil from "./Perfil";
 import Historial from "./Historial";
+
+//
+const auth=getAuth(firebaseApp);
 
 //Estilos con el makeStyle
 const useStyles = makeStyles((theme) => ({
@@ -67,7 +74,7 @@ const pages = ["XBOX", "NINTENDO", "PLAY STATION", "STEAM"];
 const settings = ["Perfil", "Compras", "Salir"];
 
 export const Catalogo = () => {
-  const { user, isAuthenticated, isLoading, logout } = useAuth0();
+  // const { user, isAuthenticated, isLoading, logout } = useAuth0();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -168,12 +175,12 @@ export const Catalogo = () => {
   };
 
   //componente loading
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
-    isAuthenticated && (
+    // isAuthenticated && (
       <>
         <AppBar position="static">
           <Container maxWidth="xl">
@@ -318,7 +325,7 @@ export const Catalogo = () => {
                   </MenuItem>
                   <MenuItem
                     key={2}
-                    onClick={() => logout({ returTo: window.location.origin })}
+                    onClick={() => signOut(auth)}
                   >
                     <Typography textAlign="center">{settings[2]}</Typography>
                   </MenuItem>
@@ -337,7 +344,7 @@ export const Catalogo = () => {
         {perfil ? <Perfil /> : ""}
         {historial ? <Historial /> : ""}
       </>
-    )
+    // )
   );
 };
 export default Catalogo;
