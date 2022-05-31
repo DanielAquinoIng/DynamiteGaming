@@ -27,8 +27,8 @@ console.log("Props>>>>>>>>>>>>", juego);
           className="zoom"
           // onClick={handleToggle}
         />
-         <p style={{marginTop:"2px", fontWeight:"bold", marginBottom:"2px", color:"white"}}>{juego.NombreJuego}</p>
-         <p style={{fontWeight:"bold", marginBottom:"10px", color:"white"}}>$ {juego.PrecioJuego}.00 mx</p>
+         <p style={{marginTop:"2px", fontWeight:"bold", marginBottom:"2px", color:"black"}}>{juego.NombreJuego}</p>
+         <p style={{fontWeight:"bold", marginBottom:"10px", color:"black"}}>$ {juego.PrecioJuego}.00 mx</p>
          </div>
         </Grid>
       {/* </Link> */}
