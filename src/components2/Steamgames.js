@@ -1,5 +1,5 @@
 import React from "react";
-import { Juego } from "./Juego";
+import Juego from "./Juego";
 import ConsultaJuegos from "../global/consultaJuegos";
 
 export const Steamgames = () => {

@@ -143,7 +143,10 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .fondo{
-  background-color: #ffd900;
+  /* background-color: #107c10; */
+  background-image: url("./assets/images/xboxwall.jpeg");
+  background-size:auto;
+  background-attachment: fixed;
 }
 
 .listoEntrar{
