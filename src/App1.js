@@ -8,6 +8,7 @@ import SignUp from "./components/signup.component";
 import Register from "./components/register";
 import Plataforma from "./components/plataforma.component";
 import Catalogo from "./components/catalogo.component";
+import InfoVideojuegos from './components2/InfoVideojuego';
 function App() {
   return (
     <Router>
@@ -29,7 +30,7 @@ function App() {
               </ul>
             </div>
           </div>
-        </nav> */}
+  </nav> */}
         {/* <div>
           <div> */}
         <Routes>
@@ -38,6 +39,7 @@ function App() {
           <Route path="/sign-in" element={<Login />} />
           <Route path="/sign-up" element={<Register />} />
           <Route path="/Plataform" element={<Plataforma />} />
+          <Route path ="/InfoVideojuego" element ={<InfoVideojuegos/>} />
           {/* <Route path="/Catalogo" element={<Catalogo />} /> */}
         </Routes>
         {/* </div>
