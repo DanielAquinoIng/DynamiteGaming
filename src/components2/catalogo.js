@@ -78,7 +78,7 @@ export const Catalogo = () => {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [xbox, setxbox] = React.useState(false);
+  const [xbox, setxbox] = React.useState(true);
   const [nintendo, setnintendo] = React.useState(false);
   const [play, setplay] = React.useState(false);
   const [steam, setsteam] = React.useState(false);

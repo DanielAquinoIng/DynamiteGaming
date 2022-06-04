@@ -32,8 +32,8 @@ function App() {
         </>
       ) : (
         <div className="listoEntrar">
-          <h1>Bienvenido a Dynamite Gaming</h1>
-          <h1>Estas listo para entrar?</h1>
+          {/* <h1>Bienvenido a Dynamite Gaming</h1>
+          <h1>Estas listo para entrar?</h1> */}
           <Sign/>
         </div>
       )}
