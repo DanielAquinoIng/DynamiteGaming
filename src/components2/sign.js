@@ -24,6 +24,7 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail
 } from "firebase/auth";
+import { async } from "@firebase/util";
 
 function Copyright(props) {
   return (
@@ -47,17 +48,38 @@ const Logueo = () => {
   const [cEnviado, setCEnviado] = React.useState(false);
   const [estaRegistrandose, setEstaRegistrandose] = useState(false);
 
-  const rPassword=()=>{
-    // const { value: email } = await Swal.fire({
-    //   title: 'Input email address',
-    //   input: 'email',
-    //   inputLabel: 'Your email address',
-    //   inputPlaceholder: 'Enter your email address'
-    // })
-    
-    // if (email) {
-    //   Swal.fire(`Entered email: ${email}`)
-    // }
+  function rPassword(){
+    (async () => {
+
+      const { value: email } = await Swal.fire({
+        icon: 'warning',
+        title: 'Recuperar contraseña',
+        input: 'email',
+        confirmButtonText: 'Recuperar',
+        inputLabel: 'Ingresa tu correo para recuperar la contraseña',
+        inputPlaceholder: 'correo@correo.com'
+      })
+      if (email) {
+        sendPasswordResetEmail(auth, email).then(() => {
+          Swal.fire({
+            icon:'success',
+            title:'Correo enviado',
+            text:'Por favor revisa tu bandeja de entrada, en la seccion spam',
+          })
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          Swal.fire({
+            icon:'error',
+            title:'Oops...',
+            text: `Parece ser que el usuario con el correo: ${email} no esta registrado en nuestra pagina :(` ,
+          })
+          // ..
+        });
+      }
+      })
+      ()
   }
   const loginbool=()=>{
     setLogn(true);
@@ -73,17 +95,21 @@ const Logueo = () => {
     setLogn(false);
   }
 
-  function resetPassword(e){
-  e.preventDefault();
-  const email = e.target.rEmail.value;
-  sendPasswordResetEmail(auth, email).then(() => {
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
-}
+//   function resetPassword(e){
+//   e.preventDefault();
+//   const data = new FormData(e.currentTarget);
+//   for (const element of data) {
+//     console.log(`I found this ${element}`)
+// }
+//   const email = e.target.rEmail.value;
+//   sendPasswordResetEmail(auth, email).then(() => {
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // ..
+//   });
+// }
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -100,7 +126,7 @@ const Logueo = () => {
       const nombre = data.get('firstName')
       const apellido = data.get('lastName')
 
-      if (contra != reContra) {
+      if (contra !== reContra) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -108,11 +134,15 @@ const Logueo = () => {
         })
       } 
       else{
-        const usuario = await createUserWithEmailAndPassword(
-          auth,
-          correo,
-          contra
-        );
+        try {
+          const usuario = await createUserWithEmailAndPassword(
+            auth,
+            correo,
+            contra
+          );
+        } catch (error) {
+          alert(error)
+        }
       }
 
     } else {
