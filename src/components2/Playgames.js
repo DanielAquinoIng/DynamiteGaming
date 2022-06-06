@@ -8,7 +8,7 @@ export const Playgames = () => {
   const juegos = ConsultaJuegos("PlayGames");
 
   return (
-    <div >
+    <div  className="fondoplay">
       <Grid
         container
         justify="center"

@@ -8,7 +8,7 @@ export const Steamgames = () => {
   const juegos = ConsultaJuegos("PcGames");
 
   return (
-    <div>
+    <div  className="fondosteam">
       <Grid
         container
         justify="center"
