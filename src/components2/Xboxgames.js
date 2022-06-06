@@ -16,7 +16,7 @@ export const Xboxgames = () => {
 
   console.log("Juegos>>>>>>>>>>>>>>>>", juegos);
   return (
-    <div className="fondo">
+    <div className="fondoxbox">
       <Grid
         container
         justify="center"

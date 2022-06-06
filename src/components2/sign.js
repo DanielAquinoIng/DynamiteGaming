@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import validator from 'validator';
 import '../css/signin.css';
 // import {Avatar} from "@material-ui/core";
 
@@ -18,6 +19,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Swal from "sweetalert2";
 
 import firebaseApp from "../components/credenciales";
+import { db } from "../firebase/firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -40,7 +43,7 @@ function Copyright(props) {
 }
 
 const auth = getAuth(firebaseApp);
-
+const user = auth.currentUser;
 
 const Logueo = () => {
   const [reset, setReset] = React.useState(false);
@@ -132,7 +135,15 @@ const Logueo = () => {
           title: 'Oops...',
           text: 'Parece ser que tus constraseñas no son iguales, asegurate de escribir la misma contraseña:)',
         })
-      } 
+      }
+      else if(validator.isEmail(correo)===false)
+      {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Correo con formato no valido :)',
+        })
+      }
       else{
         try {
           const usuario = await createUserWithEmailAndPassword(
@@ -140,8 +151,18 @@ const Logueo = () => {
             correo,
             contra
           );
+          const docRef = await addDoc(collection(db, "users"), {
+            Nombre: nombre ,
+            Apellido: apellido,
+            Nickname: ""
+          });
+          console.log("Document written with ID: ", docRef.id);
         } catch (error) {
-          alert(error)
+          Swal.fire({
+            icon:'error',
+            title:'Oops...',
+            text: `${error}` ,
+          })
         }
       }
 
@@ -149,8 +170,29 @@ const Logueo = () => {
             // si está iniciando sesión
       const correo = data.get('email');
       const contra =data.get('password');
-
+      try{
       await signInWithEmailAndPassword(auth, correo, contra);
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)}})
+      
+      Toast.fire({
+      icon: 'success',
+      title: 'Signed in successfully'})
+      }catch(error)
+      {
+        Swal.fire({
+          icon:'error',
+          title:'Oops...',
+          text: `${error}` ,
+        })
+      }
     }
   }
 
@@ -159,23 +201,23 @@ const Logueo = () => {
   return logn ? (
     <>
       {reset ? (
-        Swal.fire({
-          title: 'Hola aqui va el recuperar contraseña',
-          width: 600,
-          padding: '3em',
-          color: '#716add',
-          background: '#fff url(/src/assets/images/trees.png)',
-          backdrop: `
-            rgba(0,0,123,0.4)
-            url("/src/assets/images/runingmario.gif")
-            left top
-            no-repeat
-          `
-        })
+        // Swal.fire({
+        //   title: 'Hola aqui va el recuperar contraseña',
+        //   width: 600,
+        //   padding: '3em',
+        //   color: '#716add',
+        //   background: '#fff url(/src/assets/images/trees.png)',
+        //   backdrop: `
+        //     rgba(0,0,123,0.4)
+        //     url("/src/assets/images/runingmario.gif")
+        //     left top
+        //     no-repeat
+        //   `
+        // })
+        ""
       ) : (
         
         <ThemeProvider theme={theme}>
-          
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box

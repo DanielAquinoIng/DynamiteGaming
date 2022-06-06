@@ -25,7 +25,7 @@ function App() {
     }
   });
   return (
-    <div style={{backgroundImage: {Fondito}, backgroundSize:"cover", backgroundRepeat:"no-repeat"}}>
+    <div className="fondosign">
       {usuarioGlobal ? (
         <>
           <Catalogo />
