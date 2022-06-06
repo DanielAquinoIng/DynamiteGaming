@@ -3,6 +3,9 @@ import React from "react";
 import { Grid, CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import fondo from "./../assets/images/amo.jpg";
+import Badge, { badgeClasses } from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 //
 import firebaseApp from "../components/credenciales";
@@ -31,6 +34,7 @@ import Historial from "./Historial";
 
 //
 const auth=getAuth(firebaseApp);
+
 
 //Estilos con el makeStyle
 const useStyles = makeStyles((theme) => ({
@@ -185,13 +189,13 @@ export const Catalogo = () => {
         <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+              {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
 
               <Typography
                 variant="h6"
                 noWrap
-                component="a"
-                href="/"
+                // component="a"
+                // href="/"
                 sx={{
                   mr: 2,
                   display: { xs: "none", md: "flex" },
@@ -243,11 +247,11 @@ export const Catalogo = () => {
                 </Menu>
               </Box>
               <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-              <Typography
+              {/* <Typography
                 variant="h5"
                 noWrap
                 component="a"
-                href=""
+                // href=""
                 sx={{
                   mr: 2,
                   display: { xs: "flex", md: "none" },
@@ -260,7 +264,7 @@ export const Catalogo = () => {
                 }}
               >
                 LOGO
-              </Typography>
+              </Typography> */}
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 <Button
                   key={0}
@@ -291,13 +295,13 @@ export const Catalogo = () => {
                   {pages[3]}
                 </Button>
               </Box>
-
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Abrir Opciones">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                       alt="Remy Sharp"
                       src="/static/images/avatar/2.jpg"
+                      sx={{ width: 46, height: 46 }}
                     />
                   </IconButton>
                 </Tooltip>
