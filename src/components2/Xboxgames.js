@@ -2,17 +2,12 @@
 import  Juego  from "./Juego";
 import ConsultaJuegos from "../global/consultaJuegos";
 // import { Col } from "reactstrap";
-import React, { useState } from "react";
-import { ModalBody, ModalFooter, ModalHeader, Col } from "reactstrap";
+import React from "react";
 import Grid from '@mui/material/Grid';
 import '../css/plataforma.css'
 
 export const Xboxgames = () => {
   const juegos = ConsultaJuegos("XboxGames");
-  // const [Index, setIndex] = useState(false);
-  // const [Modal, setModal] = useState(false);
-  // const handleToggle = () => setModal(!Modal);
-  // const handleCallBack = (childData) => setIndex(childData);
 
   console.log("Juegos>>>>>>>>>>>>>>>>", juegos);
   return (
@@ -25,21 +20,10 @@ export const Xboxgames = () => {
         textAlign="center"
         className="Grid"
       >
-        {juegos.map((juego) => (
-          <Juego juego={juego} />
+        {juegos.map((juego, index) => (
+          <Juego key = {index} juego={juego} />
         ))}
       </Grid>
-      {/* <Modal isOpen={Modal} className="modal-lg" badkdrop={"static"}>
-        <ModalHeader toggle={handleToggle}>
-          <ModalBody>
-            {juegos.NombreJuego}
-            <p>Hola mundo</p>
-          </ModalBody>
-          <ModalFooter>
-
-          </ModalFooter>
-        </ModalHeader>
-      </Modal> */}
     </div>
   );
 };

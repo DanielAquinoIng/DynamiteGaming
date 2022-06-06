@@ -11,7 +11,7 @@ function ConsultaJuegos(coleccion) {
     const prevJuegos = [];
     catalogo.forEach((juego) => {
       prevJuegos.push({
-        IdJuego: juego.id,
+        id: juego.data().id,
         NombreJuego: juego.data().NombreJuego,
         PrecioJuego: juego.data().PrecioJuego,
         ImagenJuego: juego.data().ImagenJuego,
