@@ -150,7 +150,12 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .listoEntrar{
-  background-image: '/src/assets/images/COD.jpg';
+  border-radius: 8px;
+  border: outset;
+  padding: 10px;
+  box-shadow: 5px 10px white;
+
+  background-color: white;
   text-align: center;
   flex-direction: row; 
   display: table-column;

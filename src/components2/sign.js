@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import validator from 'validator';
 import '../css/signin.css';
 // import {Avatar} from "@material-ui/core";
 
@@ -18,6 +19,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Swal from "sweetalert2";
 
 import firebaseApp from "../components/credenciales";
+import { db } from "../firebase/firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -40,7 +43,7 @@ function Copyright(props) {
 }
 
 const auth = getAuth(firebaseApp);
-
+const user = auth.currentUser;
 
 const Logueo = () => {
   const [reset, setReset] = React.useState(false);
@@ -132,7 +135,15 @@ const Logueo = () => {
           title: 'Oops...',
           text: 'Parece ser que tus constraseñas no son iguales, asegurate de escribir la misma contraseña:)',
         })
-      } 
+      }
+      else if(validator.isEmail(correo)===false)
+      {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Correo con formato no valido :)',
+        })
+      }
       else{
         try {
           const usuario = await createUserWithEmailAndPassword(
@@ -140,6 +151,12 @@ const Logueo = () => {
             correo,
             contra
           );
+          const docRef = await addDoc(collection(db, "users"), {
+            Nombre: nombre ,
+            Apellido: apellido,
+            Nickname: ""
+          });
+          console.log("Document written with ID: ", docRef.id);
         } catch (error) {
           alert(error)
         }
@@ -175,7 +192,6 @@ const Logueo = () => {
       ) : (
         
         <ThemeProvider theme={theme}>
-          
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
