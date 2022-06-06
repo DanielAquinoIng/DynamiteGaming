@@ -75,9 +75,6 @@ body, html, .App, #root, .auth-wrapper {
   transition: transform .3s;
   width: 25%;
   /* flex-direction: row; */
-
-
-
 }
 
 .zoom:hover {
@@ -142,19 +139,13 @@ body, html, .App, #root, .auth-wrapper {
   transform: translate(-50%, -50%); */
 }
 
-.fondo{
-  /* background-color: #107c10; */
-  background-image: url("./assets/images/xboxwall.jpeg");
-  background-size:auto;
-  background-attachment: fixed;
-}
+
 
 .listoEntrar{
-  border-radius: 8px;
+  border-radius: 15px;
   border: outset;
   padding: 10px;
-  box-shadow: 5px 10px white;
-
+  box-shadow: 5px 5px 8px 3px rgba(0, 0, 0, 0.4);
   background-color: white;
   text-align: center;
   flex-direction: row; 
@@ -177,3 +168,41 @@ body, html, .App, #root, .auth-wrapper {
   height: 35px;
   font-size: 22px;
 }
+
+.fondosign{
+  /* background-image: url("./assets/images/fondito.jpg") !important; */
+  background-color: #7f7d7d;
+}
+
+.fondoxbox{
+  /* background-color: #107c10; */
+  background-image: url("./assets/images/xboxwall.jpeg");
+  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.fondosteam{
+  /* background-color: #107c10; */
+  background-image: url("./assets/images/fondosteam.jpg");
+  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.fondoplay{
+  /* background-color: #107c10; */
+  background-image: url("./assets/images/fondoplay.jpg");
+  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.fondonintendo{
+  /* background-color: #107c10; */
+  background-image: url("./assets/images/fondonintendo.jpg");
+  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center;
+}
+

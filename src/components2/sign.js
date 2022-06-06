@@ -201,19 +201,20 @@ const Logueo = () => {
   return logn ? (
     <>
       {reset ? (
-        Swal.fire({
-          title: 'Hola aqui va el recuperar contraseña',
-          width: 600,
-          padding: '3em',
-          color: '#716add',
-          background: '#fff url(/src/assets/images/trees.png)',
-          backdrop: `
-            rgba(0,0,123,0.4)
-            url("/src/assets/images/runingmario.gif")
-            left top
-            no-repeat
-          `
-        })
+        // Swal.fire({
+        //   title: 'Hola aqui va el recuperar contraseña',
+        //   width: 600,
+        //   padding: '3em',
+        //   color: '#716add',
+        //   background: '#fff url(/src/assets/images/trees.png)',
+        //   backdrop: `
+        //     rgba(0,0,123,0.4)
+        //     url("/src/assets/images/runingmario.gif")
+        //     left top
+        //     no-repeat
+        //   `
+        // })
+        ""
       ) : (
         
         <ThemeProvider theme={theme}>
