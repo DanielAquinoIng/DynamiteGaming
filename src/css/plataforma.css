@@ -9,3 +9,10 @@ fondo{
 .black{
     background-color: black !important;
 }
+
+.modal{
+    width: 80%;
+    height: 90%;
+    margin: 10px;
+    text-align: center;
+}

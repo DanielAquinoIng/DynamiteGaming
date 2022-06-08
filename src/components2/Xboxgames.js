@@ -4,7 +4,7 @@ import ConsultaJuegos from "../global/consultaJuegos";
 // import { Col } from "reactstrap";
 import React from "react";
 import Grid from '@mui/material/Grid';
-import '../css/plataforma.css'
+import '../css/plataforma.css';
 
 export const Xboxgames = () => {
   const juegos = ConsultaJuegos("XboxGames");

@@ -15,6 +15,8 @@ function ConsultaJuegos(coleccion) {
         NombreJuego: juego.data().NombreJuego,
         PrecioJuego: juego.data().PrecioJuego,
         ImagenJuego: juego.data().ImagenJuego,
+        descripcion: juego.data().descripcion,
+        // galeria: juego.data().galeria(),
       });
     });
     setJuegos(prevJuegos);
