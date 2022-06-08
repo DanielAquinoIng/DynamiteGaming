@@ -3,13 +3,13 @@ import React from "react";
 import { Grid, CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import fondo from "./../assets/images/amo.jpg";
-import Badge, { badgeClasses } from '@mui/material/Badge';
-import { styled } from '@mui/material/styles';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge, { badgeClasses } from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 //
 import firebaseApp from "../components/credenciales";
-import {getAuth,signOut} from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 
 //Barra busqueda
 import AppBar from "@mui/material/AppBar";
@@ -25,6 +25,11 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 import XboxGames from "./Xboxgames";
 import Nintendogames from "./Nintendogames";
 import Playgames from "./Playgames";
@@ -33,8 +38,7 @@ import Perfil from "./Perfil";
 import Historial from "./Historial";
 
 //
-const auth=getAuth(firebaseApp);
-
+const auth = getAuth(firebaseApp);
 
 //Estilos con el makeStyle
 const useStyles = makeStyles((theme) => ({
@@ -185,69 +189,69 @@ export const Catalogo = () => {
 
   return (
     // isAuthenticated && (
-      <>
-        <AppBar position="static">
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+    <>
+      <AppBar position="static">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
 
-              <Typography
-                variant="h6"
-                noWrap
-                // component="a"
-                // href="/"
+            <Typography
+              variant="h6"
+              noWrap
+              // component="a"
+              // href="/"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              DYNAMITE GAMING
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
                 sx={{
-                  mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
+                  display: { xs: "block", md: "none" },
                 }}
               >
-                DYNAMITE GAMING
-              </Typography>
-
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: "block", md: "none" },
-                  }}
-                >
-                  {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-              <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-              {/* <Typography
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            {/* <Typography
                 variant="h5"
                 noWrap
                 component="a"
@@ -265,89 +269,86 @@ export const Catalogo = () => {
               >
                 LOGO
               </Typography> */}
-              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                <Button
-                  key={0}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  onClick={xboxContent}
-                >
-                  {pages[0]}
-                </Button>
-                <Button
-                  key={1}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  onClick={nintendoContent}
-                >
-                  {pages[1]}
-                </Button>
-                <Button
-                  key={2}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  onClick={playContent}
-                >
-                  {pages[2]}
-                </Button>
-                <Button
-                  key={3}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  onClick={steamContent}
-                >
-                  {pages[3]}
-                </Button>
-              </Box>
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Abrir Opciones">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
-                      sx={{ width: 46, height: 46 }}
-                    />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  <MenuItem key={0} onClick={perfilContent}>
-                    <Typography textAlign="center">{settings[0]}</Typography>
-                  </MenuItem>
-                  <MenuItem key={1} onClick={comprarContent}>
-                    <Typography textAlign="center">{settings[1]}</Typography>
-                  </MenuItem>
-                  <MenuItem
-                    key={2}
-                    onClick={() => signOut(auth)}
-                  >
-                    <Typography textAlign="center">{settings[2]}</Typography>
-                  </MenuItem>
-                </Menu>
-              </Box>
-            </Toolbar>
-          </Container>
-        </AppBar>
-        <Grid container component="main" className={useStyles.root}>
-          <CssBaseline />
-        </Grid>
-        {xbox ? <XboxGames /> : ""}
-        {nintendo ? <Nintendogames /> : ""}
-        {play ? <Playgames /> : ""}
-        {steam ? <Steamgames /> : ""}
-        {perfil ? <Perfil /> : ""}
-        {historial ? <Historial /> : ""}
-      </>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              <Button
+                key={0}
+                sx={{ my: 2, color: "white", display: "block" }}
+                onClick={xboxContent}
+              >
+                {pages[0]}
+              </Button>
+              <Button
+                key={1}
+                sx={{ my: 2, color: "white", display: "block" }}
+                onClick={nintendoContent}
+              >
+                {pages[1]}
+              </Button>
+              <Button
+                key={2}
+                sx={{ my: 2, color: "white", display: "block" }}
+                onClick={playContent}
+              >
+                {pages[2]}
+              </Button>
+              <Button
+                key={3}
+                sx={{ my: 2, color: "white", display: "block" }}
+                onClick={steamContent}
+              >
+                {pages[3]}
+              </Button>
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Abrir Opciones">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="/static/images/avatar/2.jpg"
+                    sx={{ width: 46, height: 46 }}
+                  />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem key={0} onClick={perfilContent}>
+                  <Typography textAlign="center">{settings[0]}</Typography>
+                </MenuItem>
+                <MenuItem key={1} onClick={comprarContent}>
+                  <Typography textAlign="center">{settings[1]}</Typography>
+                </MenuItem>
+                <MenuItem key={2} onClick={() => signOut(auth)}>
+                  <Typography textAlign="center">{settings[2]}</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <Grid container component="main" className={useStyles.root}>
+        <CssBaseline />
+      </Grid>
+      {xbox ? <XboxGames /> : ""}
+      {nintendo ? <Nintendogames /> : ""}
+      {play ? <Playgames /> : ""}
+      {steam ? <Steamgames /> : ""}
+      {perfil ? <Perfil /> : ""}
+      {historial ? <Historial /> : ""}
+    </>
     // )
   );
 };
