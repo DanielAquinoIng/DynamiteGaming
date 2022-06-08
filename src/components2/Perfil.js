@@ -10,10 +10,12 @@ import {
 } from "@mui/material";
 import fondo from "./../assets/images/mine.jpg";
 import { makeStyles } from "@material-ui/core/styles";
-import { EmojiPeople } from "@material-ui/icons";
+import Swal from "sweetalert2";
 
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+
+const Hola = "Hola";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "100%",
     backgroundPosition: "center",
     backgroundAttachment: "fixed",
-    height: "110vh",
+    height: "94vh",
   },
   container: {
     // backgroundColor: "black",
     opacity: "1",
-    height: "70%",
+    height: "50%",
     marginTop: theme.spacing(25),
     [theme.breakpoints.down(400 + theme.spacing(2) + 2)]: {
       marginTop: 0,
@@ -56,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Perfil = () => {
+  const [edits, setedits] = React.useState(true);
   const [body, setBody] = useState({
     nickname: "",
     name: "",
@@ -88,6 +91,85 @@ export const Perfil = () => {
     }
   };
 
+  const editar = () => {
+    Swal.fire({
+      title: "Quieres editar tus datos?",
+      icon: "info",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Editar",
+      denyButtonText: `No editar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Ya puedes editar tu informacion",
+          icon: "warning",
+          timer: 1300,
+          showConfirmButton: false,
+        });
+        setedits(false);
+      } else if (result.isDenied) {
+        Swal.fire({
+          title: "Mantendremos tu informacion segura :) ",
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+        setedits(true);
+      }
+    });
+  };
+
+  const davedata = () => {
+    Swal.fire({
+      title: "Tus datos ya estan correctos?",
+      icon: "question",
+      showDenyButton: true,
+      confirmButtonText: "Si!",
+      denyButtonText: `No estoy seguro...`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            // toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Datos guardados satisfactoriamente :)",
+        });
+        setedits(true);
+      } else if (result.isDenied) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            // toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "warning",
+          title: "Revisa bien tus datos",
+        });
+        setedits(false);
+      }
+    });
+  };
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -111,96 +193,69 @@ export const Perfil = () => {
           </Typography>
           <form className={classes.form}>
             <TextField
-              disabled
+              disabled={edits}
               fullWidth
               autoFocus
               color="primary"
               margin="dense"
               variant="filled"
-              label="Nickname"
+              label="Nombre"
               placeholder="Escribe tu Nick:)"
               name="nickname"
-              value={body.nickname}
+              // value={body.nickname}
+              value="Daniel"
               onChange={handleChange}
             />
             <TextField
               fullWidth
-              disabled
+              disabled={edits}
               autoFocus
               color="primary"
               margin="dense"
               variant="filled"
               placeholder="Bruce 'El venganzas'"
-              label="Nombre"
+              label="Apellido"
               name="name"
-              value={body.name}
+              // value={body.name}
+              value="Aquino Villegas"
               onChange={handleChange}
             />
             <TextField
               fullWidth
-              disabled
+              disabled={edits}
               autoFocus
               color="primary"
               margin="dense"
               variant="filled"
-              label="Apellido"
+              label="Correo Electronico"
+              type="email"
               placeholder="Wayne"
               name="lastname"
-              value={body.lastname}
+              // value={body.lastname}
+              value="Correo@correo.com"
               onChange={handleChange}
             />
-            <TextField
-              fullWidth
-              disabled
-              autoFocus
-              color="primary"
-              margin="dense"
-              variant="filled"
-              type="email"
-              label="Correo"
-              placeholder="Nombrecool@correo.com"
-              name="email"
-              value={body.email}
-              onChange={handleChange}
-            />
-            <TextField
-              fullWidth
-              disabled
-              autoFocus
-              color="primary"
-              margin="dense"
-              variant="filled"
-              type="password"
-              label="Contraseña"
-              placeholder="1234Batman"
-              name="password"
-              value={body.password}
-              onChange={handleChange}
-            />
-            <TextField
-              fullWidth
-              disabled
-              autoFocus
-              color="primary"
-              margin="dense"
-              variant="filled"
-              type="password"
-              label="Confirmar contraseña"
-              placeholder="Repite tu contraseña, vamos:)"
-              name="repassword"
-              value={body.repassword}
-              onChange={handleChange}
-            />
-
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={() => onSubmit()}
-            >
-              Registrase
-            </Button>
+            {edits ? (
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={editar}
+              >
+                Editar
+              </Button>
+            ) : (
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={davedata}
+              >
+                Guardar
+              </Button>
+            )}
           </form>
         </div>
       </Container>
