@@ -4,31 +4,9 @@ import "../css/historial.css";
 import nintendo from "../assets/nintendo.jpeg";
 import Swal from "sweetalert2";
 
-const abriralert = () => {
-  Swal.fire({
-    // confirmButtonText: 'Comprar!',
-    // width: "30%",
-    // title: "Elden Ring",
-    // text: "ELDEN RING, desarrollado por FromSoftware, Inc. y BANDAI NAMCO Entertainment Inc. es un RPG de fantasía, acción y aventura ambientado en un mundo creado por Hidetaka Miyazaki y George R. R. Martin. El peligro y el descubrimiento están en cada giro del juego más grande de FromSoftware hasta la fecha.",
-    // imageUrl:
-    //   "https://cdn-prod.scalefast.com/public/assets/user/122595/image/cdb3282186e2abc6d0b0f610e9ec39c2.png",
-    // footer: "$1,500.00",
-    html: '<header class="header-card"><p><b>28 de mayo</b></p></header><footer class="footer-card"><div class="imagen-card"><img src="https://cdn-prod.scalefast.com/public/assets/user/122595/image/cdb3282186e2abc6d0b0f610e9ec39c2.png" alt="Elden ring" /></div><div class="datos-card"><h4>Elden Ring</h4><p class="precio"><b>$1,500.00</b></p><p>ELDEN RING, desarrollado por FromSoftware, Inc. y BANDAI NAMCO Entertainment Inc. es un RPG de fantasía, acción y aventura ambientado en un mundo creado por Hidetaka Miyazaki y George R. R. Martin. El peligro y el descubrimiento están en cada giro del juego más grande de FromSoftware hasta la fecha.</p><p>AASAS343434JKDJS3434</p></div></footer>',
-  });
-};
-
 const Historial = () => {
   return (
     <div>
-      <button onClick={abriralert}>modal</button>
-
-      <div className="imagen-card">
-        <img
-          src="https://cdn-prod.scalefast.com/public/assets/user/122595/image/cdb3282186e2abc6d0b0f610e9ec39c2.png"
-          alt="Elden ring"
-          onClick={abriralert}
-        />
-      </div>
       <h1>Historial de compras</h1>
       <div className="card-wrap">
         <article className="card">
