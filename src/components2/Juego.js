@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import '../css/plataforma.css';
+import Button from '@mui/material/Button';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const style = {
   position: 'absolute',
@@ -83,6 +85,10 @@ const Juego=({ juego })=> {
             <br/>
             {juego.descripcion}
           </Typography>
+          <Button variant="contained" href="">
+            <ShoppingCartIcon/>
+            Comprar
+          </Button>
         </Box>
       </Modal>
     </React.Fragment>
