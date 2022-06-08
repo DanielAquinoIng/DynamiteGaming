@@ -15,8 +15,6 @@ import Swal from "sweetalert2";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 
-const Hola = "Hola";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundImage: `url(${fondo})`,
@@ -113,7 +111,7 @@ export const Perfil = () => {
         Swal.fire({
           title: "Mantendremos tu informacion segura :) ",
           icon: "success",
-          timer: 2000,
+          timer: 1300,
           showConfirmButton: false,
         });
         setedits(true);
@@ -135,7 +133,7 @@ export const Perfil = () => {
           toast: true,
           position: "top-end",
           showConfirmButton: false,
-          timer: 3000,
+          timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
             // toast.addEventListener("mouseenter", Swal.stopTimer);
