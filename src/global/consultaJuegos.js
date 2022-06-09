@@ -7,7 +7,7 @@ function ConsultaJuegos(coleccion) {
 
   const obtenerJuegos = async () => {
     const catalogo = await getDocs(collection(db, coleccion));
-    console.log('Catalogo', catalogo);
+    console.log("Catalogo", catalogo);
     const prevJuegos = [];
     catalogo.forEach((juego) => {
       prevJuegos.push({
@@ -15,9 +15,11 @@ function ConsultaJuegos(coleccion) {
         NombreJuego: juego.data().NombreJuego,
         PrecioJuego: juego.data().PrecioJuego,
         ImagenJuego: juego.data().ImagenJuego,
+        DescripcionJuego: juego.data().descripcion,
       });
     });
     setJuegos(prevJuegos);
+    console.log("COnsulta juegos data>>>", prevJuegos);
   };
 
   useEffect(() => {

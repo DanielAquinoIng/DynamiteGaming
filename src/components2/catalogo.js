@@ -39,7 +39,6 @@ import Perfil from "./Perfil";
 import Historial from "./Historial";
 
 //
-const auth = getAuth(firebaseApp);
 
 //Estilos con el makeStyle
 const useStyles = makeStyles((theme) => ({
@@ -83,6 +82,20 @@ const pages = ["XBOX", "NINTENDO", "PLAY STATION", "STEAM"];
 const settings = ["Perfil", "Compras", "Salir"];
 
 export const Catalogo = () => {
+  const auth = getAuth(firebaseApp);
+  const user = auth.currentUser;
+
+  const dataUser = {
+    name: user.displayName,
+    email: user.email,
+    aidi: user.uid,
+  };
+  console.log("Datos del usuario en el catalogo: ", {
+    name: user.displayName,
+    email: user.email,
+    aidi: user.uid,
+  });
+
   // const { user, isAuthenticated, isLoading, logout } = useAuth0();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -343,12 +356,12 @@ export const Catalogo = () => {
       <Grid container component="main" className={useStyles.root}>
         <CssBaseline />
       </Grid>
-      {xbox ? <XboxGames /> : ""}
-      {nintendo ? <Nintendogames /> : ""}
-      {play ? <Playgames /> : ""}
-      {steam ? <Steamgames /> : ""}
-      {perfil ? <Perfil /> : ""}
-      {historial ? <Historial /> : ""}
+      {xbox ? <XboxGames user={dataUser} /> : ""}
+      {nintendo ? <Nintendogames user={dataUser} /> : ""}
+      {play ? <Playgames user={dataUser} /> : ""}
+      {steam ? <Steamgames user={dataUser} /> : ""}
+      {perfil ? <Perfil user={dataUser} /> : ""}
+      {historial ? <Historial user={dataUser} /> : ""}
     </>
     // )
   );

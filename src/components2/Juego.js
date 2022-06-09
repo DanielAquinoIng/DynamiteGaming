@@ -28,7 +28,7 @@ const Juego = ({ juego }) => {
   const [comprita, setComprita] = React.useState(false);
   const [modal, setModal] = useState(false);
   const handleToggle = () => setModal(!modal);
-  console.log("Que pro>>>>>>>>>", juego);
+  // console.log("Datos de los juegos>>>>>>>>>", juego);
 
   const abriralert = () => {
     Swal.fire({
@@ -36,7 +36,7 @@ const Juego = ({ juego }) => {
       backdrop: "rgba(0, 0, 0, 0.85)",
       width: "40%",
       title: juego.NombreJuego,
-      text: "MUCHO TEXTO EN ESTA SECCION,MUCHO TEXTO EN ESTA SECCIONMUCHO TEXTO EN ESTA SECCIONMUCHO TEXTO EN ESTA SECCION ",
+      text: juego.DescripcionJuego,
       imageHeight: "97%",
       imageWidth: "100%",
       imageUrl: juego.ImagenJuego,

@@ -1,14 +1,15 @@
 import React from "react";
 import Juego from "./Juego";
 import ConsultaJuegos from "../global/consultaJuegos";
-import Grid from '@mui/material/Grid';
-import '../css/plataforma.css';
+import Grid from "@mui/material/Grid";
+import "../css/plataforma.css";
 
-export const Playgames = () => {
+export const Playgames = (props) => {
   const juegos = ConsultaJuegos("PlayGames");
+  console.log("Datos dentro de la pestana play", props.user);
 
   return (
-    <div  className="fondoplay">
+    <div className="fondoplay">
       <Grid
         container
         justify="center"
@@ -18,7 +19,7 @@ export const Playgames = () => {
         className="Grid"
       >
         {juegos.map((juego) => (
-          <Juego juego={juego} />
+          <Juego juego={juego} user={props.user} />
         ))}
       </Grid>
     </div>

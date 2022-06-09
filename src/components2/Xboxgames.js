@@ -7,11 +7,11 @@ import Grid from "@mui/material/Grid";
 import "../css/plataforma.css";
 import Compras from "./compras";
 
-export const Xboxgames = () => {
+export const Xboxgames = (props) => {
   const [comprita, setComprita] = React.useState(false);
   const juegos = ConsultaJuegos("XboxGames");
 
-  console.log("Juegos>>>>>>>>>>>>>>>>", juegos);
+  console.log("Datos dentro de la pestana xbox", props.user);
   return (
     <div className="fondoxbox">
       {comprita ? (
@@ -26,7 +26,7 @@ export const Xboxgames = () => {
           className="Grid"
         >
           {juegos.map((juego, index) => (
-            <Juego key={index} juego={juego} />
+            <Juego key={index} juego={juego} user={props.user} />
           ))}
         </Grid>
       )}

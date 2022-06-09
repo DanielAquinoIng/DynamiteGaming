@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     // backgroundColor: "black",
     opacity: "1",
-    height: "50%",
+    height: "60%",
     marginTop: theme.spacing(25),
     [theme.breakpoints.down(400 + theme.spacing(2) + 2)]: {
       marginTop: 0,
@@ -55,16 +55,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Perfil = () => {
+export const Perfil = (props) => {
   const [edits, setedits] = React.useState(true);
   const [body, setBody] = useState({
     nickname: "",
     name: "",
     lastname: "",
-    email: "",
+    email: props.user.email,
     password: "",
     repassword: "",
   });
+  console.log("Datos dentro de la pestana de perfil", props);
   const classes = useStyles();
   const handleChange = (e) => {
     setBody({
@@ -117,6 +118,39 @@ export const Perfil = () => {
         setedits(true);
       }
     });
+  };
+
+  const cambiarcontra = () => {
+    (async () => {
+      const { value: email } = await Swal.fire({
+        icon: "warning",
+        title: "cambiar contra contraseña",
+        input: "email",
+        confirmButtonText: "Recuperar",
+        inputLabel: "Ingresa tu correo para recuperar la contraseña",
+        inputPlaceholder: "correo@correo.com",
+      });
+      if (email) {
+        // sendPasswordResetEmail(auth, email)
+        //   .then(() => {
+        //     Swal.fire({
+        //       icon: "success",
+        //       title: "Correo enviado",
+        //       text: "Por favor revisa tu bandeja de entrada, en la seccion spam",
+        //     });
+        //   })
+        //   .catch((error) => {
+        //     const errorCode = error.code;
+        //     const errorMessage = error.message;
+        //     Swal.fire({
+        //       icon: "error",
+        //       title: "Oops...",
+        //       text: `Parece ser que el usuario con el correo: ${email} no esta registrado en nuestra pagina :(`,
+        //     });
+        //     // ..
+        //   });
+      }
+    })();
   };
 
   const davedata = () => {
@@ -199,9 +233,9 @@ export const Perfil = () => {
               variant="filled"
               label="Nombre"
               placeholder="Escribe tu Nick:)"
-              name="nickname"
-              // value={body.nickname}
-              value="Daniel"
+              name="name"
+              value={body.name}
+              // value="Daniel"
               onChange={handleChange}
             />
             <TextField
@@ -213,9 +247,9 @@ export const Perfil = () => {
               variant="filled"
               placeholder="Bruce 'El venganzas'"
               label="Apellido"
-              name="name"
-              // value={body.name}
-              value="Aquino Villegas"
+              name="lastname"
+              value={body.lastname}
+              // value="Aquino Villegas"
               onChange={handleChange}
             />
             <TextField
@@ -228,11 +262,24 @@ export const Perfil = () => {
               label="Correo Electronico"
               type="email"
               placeholder="Wayne"
-              name="lastname"
-              // value={body.lastname}
-              value="Correo@correo.com"
+              name="email"
+              value={body.email}
+              // value="Correo@correo.com"
               onChange={handleChange}
             />
+            {edits ? (
+              ""
+            ) : (
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={cambiarcontra}
+              >
+                Cambiar contrasena
+              </Button>
+            )}
             {edits ? (
               <Button
                 fullWidth
