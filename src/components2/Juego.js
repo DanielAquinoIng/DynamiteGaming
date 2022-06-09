@@ -4,12 +4,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Swal from "sweetalert2/dist/sweetalert2.js";
+import firebaseApp from "../components/credenciales";
+import { getAuth } from "firebase/auth";
 
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
 
 const style = {
   position: "absolute",
@@ -24,11 +28,49 @@ const style = {
 };
 
 const Juego = ({ juego }) => {
+  const fecha = new Date();
+  const añoActual = fecha.getFullYear();
+  const mesActual = fecha.getMonth() + 1;
+  const hoy = fecha.getDate();
+  const feactual =
+    hoy.toString() + "/" + mesActual.toString() + "/" + añoActual.toString();
+
+  // console.log("fecha: ", {
+  //   ano: añoActual,
+  //   mes: mesActual,
+  //   hoys: hoy,
+  //   date: feactual,
+  // });
+  const auth = getAuth(firebaseApp);
+  const user = auth.currentUser;
+
+  const dataUser = {
+    name: user.displayName,
+    email: user.email,
+    aidi: user.uid,
+  };
+  // console.log("Datos del usuario en el AAAAAAAAA: ", {
+  //   name: user.displayName,
+  //   email: user.email,
+  //   aidi: user.uid,
+  // });
+
   const [xbox, setxbox] = React.useState(true);
   const [comprita, setComprita] = React.useState(false);
   const [modal, setModal] = useState(false);
   const handleToggle = () => setModal(!modal);
-  // console.log("Datos de los juegos>>>>>>>>>", juego);
+  // console.log("Datos de los juegos>>>>>>>>>", this.props);
+
+  const subircompra = async () => {
+    const consulta = doc(collection(db, "users", dataUser.aidi, "Compras"));
+    await setDoc(consulta, {
+      Nombre: juego.NombreJuego,
+      Imagen: juego.ImagenJuego,
+      Descripcion: juego.DescripcionJuego,
+      Fecha: feactual,
+      Precio: juego.PrecioJuego,
+    });
+  };
 
   const abriralert = () => {
     Swal.fire({
@@ -73,12 +115,14 @@ const Juego = ({ juego }) => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
+        subircompra();
         Swal.fire({
           title: "Gracias por tu compra :)",
           icon: "success",
           timer: 1000,
           showConfirmButton: false,
         });
+
         setComprita(true);
       } else if (result.isDenied) {
         Swal.fire({
