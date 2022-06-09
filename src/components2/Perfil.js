@@ -12,8 +12,13 @@ import fondo from "./../assets/images/mine.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
 
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { db } from "../firebase/firebaseConfig";
+
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+
+import { collection, query, where } from "firebase/firestore";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,6 +61,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Perfil = (props) => {
+  const correo = props.user.email;
+  const usuarioref = collection(db, "users");
+  // const q = query(usuarioref, where("Correo", "==", correo));
+  // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa", q);
+  // q.forEach((usuario) => {
+  //   console.log("Datos del perfil obtenidos por get: ", usuario.data());
+  // });
+
+  const auth = getAuth();
+
+  const user = auth.currentUser;
+
   const [edits, setedits] = React.useState(true);
   const [body, setBody] = useState({
     nickname: "",
@@ -124,13 +141,34 @@ export const Perfil = (props) => {
     (async () => {
       const { value: email } = await Swal.fire({
         icon: "warning",
-        title: "cambiar contra contraseña",
+        title: "cambiar contraseña",
         input: "email",
         confirmButtonText: "Recuperar",
-        inputLabel: "Ingresa tu correo para recuperar la contraseña",
+        inputLabel: "Ingresa tu correo para cambiar la contraseña",
         inputPlaceholder: "correo@correo.com",
       });
       if (email) {
+        sendPasswordResetEmail(auth, email)
+          .then(() => {
+            Swal.fire({
+              title: "Se envio un correo para el cambio de contrasena",
+              icon: "info",
+              timer: 1500,
+            });
+            // Password reset email sent!
+            // ..
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: "Oops...",
+              icon: "error",
+              text: "Ah habido un error",
+              timer: 1500,
+            });
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+          });
         // sendPasswordResetEmail(auth, email)
         //   .then(() => {
         //     Swal.fire({

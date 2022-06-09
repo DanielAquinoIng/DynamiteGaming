@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import validator from 'validator';
-import '../css/signin.css';
+import validator from "validator";
+import "../css/signin.css";
 // import {Avatar} from "@material-ui/core";
 
 //dependencias del login
 // import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Swal from "sweetalert2";
 
 import firebaseApp from "../components/credenciales";
@@ -25,19 +25,24 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { async } from "@firebase/util";
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
       <Link color="inherit" href="">
         Dynamite Software
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
@@ -47,104 +52,100 @@ const user = auth.currentUser;
 
 const Logueo = () => {
   const [reset, setReset] = React.useState(false);
-  const [logn, setLogn]= React.useState(true);
+  const [logn, setLogn] = React.useState(true);
   const [cEnviado, setCEnviado] = React.useState(false);
   const [estaRegistrandose, setEstaRegistrandose] = useState(false);
 
-  function rPassword(){
+  function rPassword() {
     (async () => {
-
       const { value: email } = await Swal.fire({
-        icon: 'warning',
-        title: 'Recuperar contraseña',
-        input: 'email',
-        confirmButtonText: 'Recuperar',
-        inputLabel: 'Ingresa tu correo para recuperar la contraseña',
-        inputPlaceholder: 'correo@correo.com'
-      })
+        icon: "warning",
+        title: "Recuperar contraseña",
+        input: "email",
+        confirmButtonText: "Recuperar",
+        inputLabel: "Ingresa tu correo para recuperar la contraseña",
+        inputPlaceholder: "correo@correo.com",
+      });
       if (email) {
-        sendPasswordResetEmail(auth, email).then(() => {
-          Swal.fire({
-            icon:'success',
-            title:'Correo enviado',
-            text:'Por favor revisa tu bandeja de entrada, en la seccion spam',
+        sendPasswordResetEmail(auth, email)
+          .then(() => {
+            Swal.fire({
+              icon: "success",
+              title: "Correo enviado",
+              text: "Por favor revisa tu bandeja de entrada, en la seccion spam",
+            });
           })
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          Swal.fire({
-            icon:'error',
-            title:'Oops...',
-            text: `Parece ser que el usuario con el correo: ${email} no esta registrado en nuestra pagina :(` ,
-          })
-          // ..
-        });
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `Parece ser que el usuario con el correo: ${email} no esta registrado en nuestra pagina :(`,
+            });
+            // ..
+          });
       }
-      })
-      ()
+    })();
   }
-  const loginbool=()=>{
+  const loginbool = () => {
     setLogn(true);
     setReset(false);
     setCEnviado(false);
-    setEstaRegistrandose(false)
-  }
-  const coEnviado=()=>{
-    setCEnviado(true)
-  }
-  const seRegistra = () =>{
-    setEstaRegistrandose(true)
+    setEstaRegistrandose(false);
+  };
+  const coEnviado = () => {
+    setCEnviado(true);
+  };
+  const seRegistra = () => {
+    setEstaRegistrandose(true);
     setLogn(false);
-  }
+  };
 
-//   function resetPassword(e){
-//   e.preventDefault();
-//   const data = new FormData(e.currentTarget);
-//   for (const element of data) {
-//     console.log(`I found this ${element}`)
-// }
-//   const email = e.target.rEmail.value;
-//   sendPasswordResetEmail(auth, email).then(() => {
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // ..
-//   });
-// }
+  //   function resetPassword(e){
+  //   e.preventDefault();
+  //   const data = new FormData(e.currentTarget);
+  //   for (const element of data) {
+  //     console.log(`I found this ${element}`)
+  // }
+  //   const email = e.target.rEmail.value;
+  //   sendPasswordResetEmail(auth, email).then(() => {
+  //   })
+  //   .catch((error) => {
+  //     const errorCode = error.code;
+  //     const errorMessage = error.message;
+  //     // ..
+  //   });
+  // }
 
   async function submitHandler(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     for (const element of data) {
-      console.log(`I found this ${element}`)
-  }
+      console.log(`I found this ${element}`);
+    }
 
     if (estaRegistrandose) {
-            //si se registra
-      const correo = data.get('email');
-      const contra =data.get('password');
-      const reContra = data.get('rePassword')
-      const nombre = data.get('firstName')
-      const apellido = data.get('lastName')
+      //si se registra
+      const correo = data.get("email");
+      const contra = data.get("password");
+      const reContra = data.get("rePassword");
+      const nombre = data.get("firstName");
+      const apellido = data.get("lastName");
 
       if (contra !== reContra) {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Parece ser que tus constraseñas no son iguales, asegurate de escribir la misma contraseña:)',
-        })
-      }
-      else if(validator.isEmail(correo)===false)
-      {
+          icon: "error",
+          title: "Oops...",
+          text: "Parece ser que tus constraseñas no son iguales, asegurate de escribir la misma contraseña:)",
+        });
+      } else if (validator.isEmail(correo) === false) {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Correo con formato no valido :)',
-        })
-      }
-      else{
+          icon: "error",
+          title: "Oops...",
+          text: "Correo con formato no valido :)",
+        });
+      } else {
         try {
           const usuario = await createUserWithEmailAndPassword(
             auth,
@@ -152,46 +153,48 @@ const Logueo = () => {
             contra
           );
           const docRef = await addDoc(collection(db, "users"), {
-            Nombre: nombre ,
+            Nombre: nombre,
             Apellido: apellido,
-            Nickname: ""
+            Nickname: "",
+            Correo: correo,
           });
           console.log("Document written with ID: ", docRef.id);
         } catch (error) {
           Swal.fire({
-            icon:'error',
-            title:'Oops...',
-            text: `${error}` ,
-          })
+            icon: "error",
+            title: "Oops...",
+            text: `${error}`,
+          });
         }
       }
-
     } else {
-            // si está iniciando sesión
-      const correo = data.get('email');
-      const contra =data.get('password');
-      try{
-      await signInWithEmailAndPassword(auth, correo, contra);
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-        // toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)}})
-      
-      Toast.fire({
-      icon: 'success',
-      title: 'Inicio de sesión correcto'})
-      }catch(error)
-      {
+      // si está iniciando sesión
+      const correo = data.get("email");
+      const contra = data.get("password");
+      try {
+        await signInWithEmailAndPassword(auth, correo, contra);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            // toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Inicio de sesión correcto",
+        });
+      } catch (error) {
         Swal.fire({
-          icon:'error',
-          title:'Oops...',
-          text: `${error}` ,
-        })
+          icon: "error",
+          title: "Oops...",
+          text: `${error}`,
+        });
       }
     }
   }
@@ -216,7 +219,6 @@ const Logueo = () => {
         // })
         ""
       ) : (
-        
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -336,7 +338,7 @@ const Logueo = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                type="email"
+                  type="email"
                   required
                   fullWidth
                   id="email"
